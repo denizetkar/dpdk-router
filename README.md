@@ -1,0 +1,31 @@
+Setting up DPDK
+===============
+
+Compile DPDK
+    cd dpdk
+    make config T=x86_64-native-linuxapp-gcc
+    make T=x86_64-native-linuxapp-gcc
+
+Load the `igb_uio` driver and its dependency `uio`
+	modprobe uio
+	insmod build/kmod/igb_uio.ko
+
+Use the tool `dpdk-devbind.py` to bind the VirtIO NICs to the `igb_uio` driver.
+(Find out how to do this, the tool is pretty self-explanatory.)
+	usertools/dpdk-devbind.py --h
+
+Setup hugetlbfs huge pages for DPDK
+	mkdir /mnt/huge
+	mount -t hugetlbfs nodev /mnt/huge
+Statically allocate 256 2MB huge pages
+	echo 256 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+
+Compiling your App
+==================
+
+This example project comes with a CMakeFile and a simple wrapper that initializes DPDK for you.
+Run the following steps to build the router app
+    cmake .
+    make
+
+That's all!
