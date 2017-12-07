@@ -2760,7 +2760,6 @@ rte_eth_rx_burst(uint8_t port_id, uint16_t queue_id,
 		} while (cb != NULL);
 	}
 #endif
-	if (unlikely(nb_rx == 0)) usleep(100);
 
 	return nb_rx;
 }

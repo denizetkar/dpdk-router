@@ -46,16 +46,16 @@ static struct rte_mempool* create_mempool() {
  *
  * Number of allocated queues for device with port_id:
  * - 1 RX queue
- * - num_tx_queues TX queues
+ * - num_queues rx/tx queues
  */
-void configure_device(uint8_t port_id, uint16_t num_tx_queues) {
+void configure_device(uint8_t port_id, uint16_t num_queues) {
 	struct rte_eth_conf port_conf = { 0 };
-	check_dpdk_error(rte_eth_dev_configure(port_id, 1, num_tx_queues, &port_conf), "configure device");
+	check_dpdk_error(rte_eth_dev_configure(port_id, num_queues, num_queues, &port_conf), "configure device");
 	struct rte_eth_dev_info dev_info;
 	rte_eth_dev_info_get(port_id, &dev_info);
-	check_dpdk_error(rte_eth_rx_queue_setup(port_id, 0, RX_DESCS, rte_socket_id(), &dev_info.default_rxconf, create_mempool()), "configure rx queue");
-	for (uint16_t queue = 0; queue < num_tx_queues; ++queue) {
+	for (uint16_t queue = 0; queue < num_queues; ++queue) {
 		check_dpdk_error(rte_eth_tx_queue_setup(port_id, queue, TX_DESCS, rte_socket_id(), &dev_info.default_txconf), "configure tx queue");
+		check_dpdk_error(rte_eth_rx_queue_setup(port_id, queue, RX_DESCS, rte_socket_id(), &dev_info.default_rxconf, create_mempool()), "configure rx queue");
 	}
 	check_dpdk_error(rte_eth_dev_start(port_id), "starting device");
 }

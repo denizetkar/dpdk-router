@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <inttypes.h>
 #include <getopt.h>
+#include <unistd.h>
 
 #include <rte_cycles.h>
 #include <rte_config.h>
@@ -64,6 +65,7 @@ int run_thread(void* arg) {
 
 		/* Receive a burst of packets */
 		uint16_t rx = rte_eth_rx_burst(config->src_interface, config->src_queue, bufs, 64);
+		if (!rx) usleep(100);
 		for (uint16_t i = 0; i < rx; ++i) handle_packet(config, bufs[i]);
 		recv_pkts += rx;
 
