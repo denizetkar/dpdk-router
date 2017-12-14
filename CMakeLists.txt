@@ -27,3 +27,10 @@ SET(PRJ fwd)
 ADD_EXECUTABLE(${PRJ} dpdk_init.c forwarder/fwd.c)
 TARGET_LINK_LIBRARIES(${PRJ} ${LINKER_OPTS})
 
+# test
+SET(PRJ-TEST table-test)
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+ADD_EXECUTABLE(${PRJ-TEST} ${SOURCES} test/test.cc)
+TARGET_LINK_LIBRARIES(${PRJ-TEST} -Wl,--start-group ${DPDK_LIBS} ${GTEST_LIBRARIES} -Wl,--end-group pthread dl rt)
+

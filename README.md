@@ -29,3 +29,16 @@ Run the following steps to build the router app
     make
 
 That's all!
+
+Commpiling gtest
+================
+
+Compiling the gtest library is required to execute table-test
+
+Fetching gtest
+    apt-get install libgtest-dev
+
+Compiling gtest
+    cd /usr/src/googletest/googletest
+    cmake .
+    make install

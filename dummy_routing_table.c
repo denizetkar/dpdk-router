@@ -26,3 +26,7 @@ struct routing_table_entry* get_next_hop(uint32_t ip) {
 	}
 }
 
+void add_route(uint32_t ip_addr, uint8_t prefix, struct ether_addr* mac_addr, uint8_t port) {
+	return; // do nothing
+}
+
