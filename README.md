@@ -42,3 +42,13 @@ Compiling gtest
     cd /usr/src/googletest/googletest
     cmake .
     make install
+
+Remark on ACN-VM
+================
+
+add recv_from_device() utility function
+
+Apparently our virtual switch works different from last year and sets rx = tx queues with automatic load balancing
+(even when not configured) so this is a simple work-around.
+
+
