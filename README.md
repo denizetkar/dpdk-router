@@ -41,6 +41,7 @@ Fetching gtest
 Compiling gtest
     cd /usr/src/googletest/googletest
     cmake .
+    make
     make install
 
 Remark on ACN-VM
