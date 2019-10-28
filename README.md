@@ -30,8 +30,8 @@ Run the following steps to build the router app
 
 That's all!
 
-Commpiling gtest
-================
+Compiling gtest
+===============
 
 Compiling the gtest library is required to execute table-test
 
