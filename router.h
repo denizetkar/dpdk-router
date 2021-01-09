@@ -2,6 +2,7 @@
 #define ROUTER_H__
 
 #include <stdint.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <inttypes.h>
 
@@ -16,13 +17,13 @@
 
 #include <arpa/inet.h>
 
+#include "utils/utils.h"
+#include "utils/pointer_list.h"
 #include "dpdk_init.h"
-#include "routing_table.h"
 
-int router_thread(void* arg);
-void parse_route(char *route);
+void router_init();
+void router_finalize();
 int parse_args(int argc, char **argv);
-void start_thread(uint8_t port);
+void start_router(unsigned int);
 
 #endif
-
