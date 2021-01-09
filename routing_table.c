@@ -1,4 +1,6 @@
 #include "routing_table.h"
+#include "utils/utils.h"
+
 #include <stdio.h>
 
 // Must not be bigger than 32 !

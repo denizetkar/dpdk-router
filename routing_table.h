@@ -6,8 +6,6 @@
 #include <rte_config.h>
 #include <rte_ether.h>
 
-#include "utils/utils.h"
-
 // build a new routing table
 void add_route(uint32_t ip_addr, uint8_t prefix, struct ether_addr *mac_addr, uint8_t port);
 void print_routes();
